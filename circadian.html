@@ -1,0 +1,113 @@
+<script type="text/javascript">
+  RED.nodes.registerType('Circadian Location', {
+      category: 'config',
+      defaults: {
+        name: {},
+        lat: {value: 0.0, required: true},
+        lon: {value: 0.0, required: true}
+      },
+      label: function(){
+        return this.name || "Location";
+      }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="Circadian Location">
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" placeholder="Location Name">
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-lat"><i class="fa fa-map"></i> Latitude</label>
+    <input type="text" id="node-config-input-lat">
+  </div>
+  <div class="form-row">
+      <label for="node-config-input-lon"><i class="fa fa-map"></i> Longitude</label>
+      <input type="text" id="node-config-input-lon">
+  </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('Circadian Light',{
+    	category: 'advanced-input',
+      color: "#ffcc66",
+    	defaults: {
+        location: { type: "Circadian Location", required: true },
+        minct: {value: 2700, required: true},
+        maxct: {value: 6500, required: true},
+        minbr: {value: 1, required: true},
+        maxbr: {value: 100, required: true},
+        period: {value: 5, required: true},
+    		topic: {},
+    		name: {}
+    	},
+    	outputs: 1,
+    	inputs: 0,
+    	label: function(){
+        return this.name || "Circadian";
+      },
+    	icon: 'sun.png'
+    });
+</script>
+
+<script type="text/x-red" data-template-name="Circadian Light">
+  <div class="form-row">
+    <label for="node-input-location"><i class="fa fa-map-marker"></i> Location</label>
+    <input type="text" id="node-input-location">
+  </div>
+  <div class="form-row">
+    <label for="node-input-minct"><i class="fa"></i> Min. temp.</label>
+    <input type="text" id="node-input-minct" >
+  </div>
+  <div class="form-row">
+    <label for="node-input-maxct"><i class="fa"></i> Max. temp.</label>
+    <input type="text" id="node-input-maxct" >
+  </div>
+  <div class="form-row">
+    <label for="node-input-minbr"><i class="fa fa-sun"></i> Min. bright.</label>
+    <input type="text" id="node-input-minbr" >
+  </div>
+  <div class="form-row">
+    <label for="node-input-maxbr"><i class="fas fa-sun"></i> Max. bright.</label>
+    <input type="text" id="node-input-maxbr" >
+  </div>
+  <div class="form-row">
+      <label for="node-input-period"><i class="fa fa-clock-o"></i> Interval(min)</label>
+      <input type="text" id="node-input-period" >
+  </div>
+  <div class="form-row">
+    <label for="node-input-topic"><i class="fa"></i> Topic</label>
+    <input type="text" id="node-input-topic">
+  </div>
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name" placeholder="Temperature">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="Circadian Light">
+	<p>A node to give the suns relative position for a given location.</p>
+  <p><strong>Inputs:</strong></p>
+  <ul>
+    <li>Latitude: The Latitude of the location you are interested in.</li>
+    <li>Longditude: The Longditude of the location you are interested in.</li>
+    <li>Period: Time in minutes to output data (defaults to 5mins).</li>
+  </ul>
+  <p><strong>Outputs:</strong></p>
+  <pre>{
+  "azimuth": 0.36900883056765676, 
+  "altitude": 0.36796818774968365, 
+  "percent": 89.8566247170534 
+  }</pre>
+    <p>Where:</p>
+    <ul>
+      <li>azimuth: The position of the Sun in radians  (direction along the 
+  horizon, measured from south to west), e.g. 0 is south and Math.PI * 3/4 is 
+  northwest.</li>
+      <li>altitude: The hight of the Sun above the horizon in radians. Where 0 is 
+  at the horizon and PI/2 is directly overhead.</li>
+      <li>percent: How close the Sun is to it's highest position of the day, so 0%
+  is at sun rise and 100% will be the highest point the sun reaches for the 
+  given position and day.</li>
+    </ul>
+</script>

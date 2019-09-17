@@ -1,0 +1,22 @@
+{
+  "name": "node-red-node-circadian",
+  "version": "0.0.1",
+  "description": "A Node-RED node to set lighting levels based on the suns position",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node-red",
+    "circadian"
+  ],
+  "author": "igor@voynov.dev",
+  "license": "MIT",
+  "node-red": {
+    "nodes": {
+      "circadian": "circadian.js"
+    }
+  },
+  "dependencies": {
+    "suncalc": "^1.8.0"
+  }
+}
