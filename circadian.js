@@ -107,6 +107,11 @@ module.exports = function(RED) {
 		node.on('close', function() {
 			clearInterval(node.interval);
 		});
+		
+		node.on('input', function() {
+			calcColourTemp();
+		});
+
 	};
 
 	RED.nodes.registerType("lighting", circadianLight);
