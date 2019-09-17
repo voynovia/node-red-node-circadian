@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  RED.nodes.registerType('Circadian Location', {
+  RED.nodes.registerType('location', {
       category: 'config',
       defaults: {
         name: {},
@@ -12,7 +12,7 @@
   });
 </script>
 
-<script type="text/x-red" data-template-name="Circadian Location">
+<script type="text/x-red" data-template-name="location">
   <div class="form-row">
     <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-config-input-name" placeholder="Location Name">
@@ -28,11 +28,11 @@
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('Circadian Light',{
+    RED.nodes.registerType('lighting',{
     	category: 'advanced-input',
       color: "#ffcc66",
     	defaults: {
-        location: { type: "Circadian Location", required: true },
+        location: { type: "location", required: true },
         minct: {value: 2700, required: true},
         maxct: {value: 6500, required: true},
         minbr: {value: 1, required: true},
@@ -44,13 +44,13 @@
     	outputs: 1,
     	inputs: 0,
     	label: function(){
-        return this.name || "Circadian";
+        return this.name || "Lighting";
       },
     	icon: 'sun.png'
     });
 </script>
 
-<script type="text/x-red" data-template-name="Circadian Light">
+<script type="text/x-red" data-template-name="lighting">
   <div class="form-row">
     <label for="node-input-location"><i class="fa fa-map-marker"></i> Location</label>
     <input type="text" id="node-input-location">
@@ -85,29 +85,27 @@
   </div>
 </script>
 
-<script type="text/x-red" data-help-name="Circadian Light">
-	<p>A node to give the suns relative position for a given location.</p>
+<script type="text/x-red" data-help-name="lighting">
+	<p>A node to give the color temperature and brightness for a given location.</p>
   <p><strong>Inputs:</strong></p>
   <ul>
-    <li>Latitude: The Latitude of the location you are interested in.</li>
-    <li>Longditude: The Longditude of the location you are interested in.</li>
-    <li>Period: Time in minutes to output data (defaults to 5mins).</li>
+    <li>Location: The location you are interested in.</li>
+    <li>Min. temp.: The minimum color temperature.</li>
+    <li>Max. temp.: The maximum color temperature.</li>
+    <li>Min. bright.: The minimum brightness.</li>
+    <li>Max. bright.: The maximum brightness.</li>
+    <li>Interval(min): Time in minutes to output data (defaults to 5mins).</li>
   </ul>
   <p><strong>Outputs:</strong></p>
   <pre>{
-  "azimuth": 0.36900883056765676, 
-  "altitude": 0.36796818774968365, 
-  "percent": 89.8566247170534 
+    "percent": -75
+    "temp": 2700
+    "brightness": 34
   }</pre>
     <p>Where:</p>
     <ul>
-      <li>azimuth: The position of the Sun in radians  (direction along the 
-  horizon, measured from south to west), e.g. 0 is south and Math.PI * 3/4 is 
-  northwest.</li>
-      <li>altitude: The hight of the Sun above the horizon in radians. Where 0 is 
-  at the horizon and PI/2 is directly overhead.</li>
-      <li>percent: How close the Sun is to it's highest position of the day, so 0%
-  is at sun rise and 100% will be the highest point the sun reaches for the 
-  given position and day.</li>
+      <li>percent: Sun position.</li>
+      <li>temp: Color Temperature.</li>
+      <li>brightness: Brightness.</li>
     </ul>
 </script>

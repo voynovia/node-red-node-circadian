@@ -10,7 +10,7 @@ module.exports = function(RED) {
 		this.lon = n.lon;
 	}
 
-	RED.nodes.registerType("Circadian Location", circadianLocation);
+	RED.nodes.registerType("location", circadianLocation);
 
 	function circadianLight(n) {
 		RED.nodes.createNode(this,n);
@@ -109,5 +109,5 @@ module.exports = function(RED) {
 		});
 	};
 
-	RED.nodes.registerType("Circadian Light", circadianLight);
+	RED.nodes.registerType("lighting", circadianLight);
 }
