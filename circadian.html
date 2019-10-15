@@ -4,7 +4,8 @@
       defaults: {
         name: {},
         lat: {value: 0.0, required: true},
-        lon: {value: 0.0, required: true}
+        lon: {value: 0.0, required: true},
+        period: {value: 5, required: true}
       },
       label: function(){
         return this.name || "Location";
@@ -25,6 +26,10 @@
       <label for="node-config-input-lon"><i class="fa fa-map"></i> Longitude</label>
       <input type="text" id="node-config-input-lon">
   </div>
+  <div class="form-row">
+    <label for="node-config-input-period"><i class="fa fa-clock-o"></i> Interval(min)</label>
+    <input type="text" id="node-config-input-period" >
+  </div>
 </script>
 
 <script type="text/javascript">
@@ -37,7 +42,6 @@
         maxct: {value: 6500, required: true},
         minbr: {value: 1, required: true},
         maxbr: {value: 100, required: true},
-        period: {value: 5, required: true},
     		topic: {},
     		name: {}
     	},
@@ -72,16 +76,12 @@
     <input type="text" id="node-input-maxbr" >
   </div>
   <div class="form-row">
-      <label for="node-input-period"><i class="fa fa-clock-o"></i> Interval(min)</label>
-      <input type="text" id="node-input-period" >
-  </div>
-  <div class="form-row">
     <label for="node-input-topic"><i class="fa"></i> Topic</label>
     <input type="text" id="node-input-topic">
   </div>
   <div class="form-row">
       <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-      <input type="text" id="node-input-name" placeholder="Circadian Lighting">
+      <input type="text" id="node-input-name" placeholder="Temperature">
   </div>
 </script>
 
