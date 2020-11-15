@@ -95,8 +95,8 @@ module.exports = function(RED) {
 
 		function calcColourTemp() {
 			const percent = node.location.percent
-			const ct = percent > 0 ? ((node.maxct - node.minct) * percent/100) + node.minct : node.minct;
-			const bright = percent > 0 ? node.maxbr : ((node.maxbr - node.minbr) * ((100+percent) / 100)) + node.minbr;
+			const ct = percent > 0 ? (((node.maxct - node.minct) * percent/100) | 0) + node.minct : node.minct;
+                        const bright = percent > 0 ? node.maxbr : (((node.maxbr - node.minbr) * ((100+percent) / 100)) | 0) + node.minbr;
 
 			node.send({
 				topic: node.topic,
