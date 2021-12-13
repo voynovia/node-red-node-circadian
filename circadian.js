@@ -96,7 +96,7 @@ module.exports = function(RED) {
 		function calcColourTemp() {
 			const percent = node.location.percent
 			var ct, bright;
-			if percent > 0 {
+			if (percent > 0) {
 			      let delta = Double(node.maxct - node.minct);
 			      let percent = percent / 100;
 			      ct = parseInt(delta * percent, 10) + node.minct;
