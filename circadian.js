@@ -105,7 +105,7 @@ module.exports = function(RED) {
 			} else {
 			      ct = node.minct
 			      const delta = parseFloat(node.maxbr - node.minbr);
-			      const per = (100+percent) / 100;
+			      const per = percent / 100 + 1;
 			      bright = parseInt(delta * per, 10) + node.minbr;
 			}
 			
