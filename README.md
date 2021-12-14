@@ -18,6 +18,7 @@ Circadian Lighting slowly synchronizes your color changing lights with the regul
 
 #### Installation:
 ```bash
+cd .node-red/node_modules/
 npm install https://github.com/voynovia/node-red-node-circadian.git --save
 ```
 
